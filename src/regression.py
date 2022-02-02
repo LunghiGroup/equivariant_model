@@ -85,7 +85,7 @@ for i in range(2*l+1):
     
 feats=np.concatenate(([des3[:,i,:] for i in range(2*l+1)]))
 
-stensor=np.reshape(np.transpose(stensor), (nsample*10))
+stensor=np.reshape(np.transpose(stensor), (nsample*(2*l+1)*2))
 
 if args.skipfit:
     A=feats
@@ -107,3 +107,10 @@ out=np.matmul(A,coefficient)
     
 rmse=np.sqrt(np.mean((out-B)**2))
 print("fit RMSE: {}".format(rmse))
+
+f=open("tensors.out","w")
+f.write("Prediction\tReference\n")
+for i in range(nsample*(2*l+1)*2):
+    f.write("{}\t{}\n".format('%.12f' % out[i], '%.12f' % B[i]))
+    
+f.close()
