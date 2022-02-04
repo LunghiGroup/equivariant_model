@@ -3,6 +3,8 @@
 The Python code for equivariant ridge regression model. For more information:
 * Predicting tensorial molecular properties with equivariant machine-learning models, arXiv:2202.01449 [cond-mat.mtrl-sci], 2022
 
+This program is free software: you can redistribute it and/or modify it. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Please note that the current implementation is not yet optimized.
+
 ### Prerequisites
 The code requires Python 3 and the following Python libraries: ase and numpy.
 
