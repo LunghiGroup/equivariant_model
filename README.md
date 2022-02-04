@@ -25,7 +25,7 @@ cd example/copdms
 
 Then, to train the model with the training set: 
 ```sh
-python3 ../../src/regression.py -l 2 -in inp -r 2 -tc -rc 4.1 -reg 0.1
+python3 ../../src/models.py -l 2 -in inp -r 2 -tc -rc 4.1 -reg 0.1
 ```
 
 The `inp` file (`-in inp` or `--input inp`) contains the names of the files with the bispectrum components, the coordinates, and the tensors of all configurations in the training set. As the target property is the D tensor (a rank 2 Cartesian tensor: `-r 2` or `--rank 2`), the corresponding spherical tensor order is l=2 (`-l 2` or `--lorder 2`). If the tensor file contains Cartensian tensors, `-tc` or `--tensconv` is needed to convert the Cartesian tensor to spherical tensor of the correct order l. Hyperparameters rcut and regularization value can be specified with `-rc` or `--rcut` and `-reg` or `--regularize`, respectively.
@@ -33,7 +33,7 @@ The `inp` file (`-in inp` or `--input inp`) contains the names of the files with
 
 To test the performance of the model, the command is similar to the previous step but the option `-sf` or `--skipfit` is necessary to read the coefficient file from the previous step instead of fitting the model again. Additionally, the file names in `inp` needs to be changed to point to the correct files containing the test set data.
 ```sh
-python3 ../../src/regression.py -l 2 -in inp -r 2 -tc -rc 4.1 -reg 0.1 -sf
+python3 ../../src/models.py -l 2 -in inp -r 2 -tc -rc 4.1 -reg 0.1 -sf
 ```
 
 The hyperparameters can be optimized by varying the values and testing the model's performance with a validation set.
