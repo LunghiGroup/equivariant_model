@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
+
+###                          UTILITIES FUNCTIONS                           ###
+
 import numpy as np
 import random as rd
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
 
 ##############################################################################
 # spherical harmonics from cartesian coordinates
@@ -87,7 +93,9 @@ def spherical_harmonics(l, m, R, r):
 # convert cartesian tensor to spherical tensor
 
 def Cartesian_to_spherical_tens(r,l,m,D):
-    if r==1:
+    if r==0:
+        T=D
+    elif r==1:
         if l==1:
             if m==0:
                 T=D[2]
@@ -225,3 +233,13 @@ def rotmat2eul(R):
     euler[2]=np.arctan2(R[2,1],-R[2,0])
     
     return euler
+
+##############################################################################
+# RMSE loss function for NN
+
+def loss_fn(y_true, y_pred):
+    squared_difference = tf.square(y_true - y_pred)
+    mean_rmse=tf.reduce_mean(squared_difference, axis=-1)
+    return tf.sqrt(mean_rmse)
+
+##############################################################################
